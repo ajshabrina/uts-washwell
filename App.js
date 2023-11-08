@@ -5,6 +5,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import ChatScreen from './screens/ChatScreen';
+import NotificationScreen from './screens/NotificationScreen';
+import RatingScreen from './screens/RatingScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -13,11 +15,13 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
 
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+    <NavigationContainer >
+      <Stack.Navigator >
         <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Chat" component={ChatScreen} />
+        <Stack.Screen name="Notification" component={NotificationScreen} />
+        <Stack.Screen name="Rating" component={RatingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
 

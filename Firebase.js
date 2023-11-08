@@ -9,7 +9,7 @@ import "firebase/compat/firestore"
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBVzd6F2by5J5HLVZBGodTMYQrkLAJSFdY",
-  authDomain: "washmate-3437f.firasdebaseapp.com",
+  authDomain: "washmate-3437f.firebaseapp.com",
   projectId: "washmate-3437f",
   storageBucket: "washmate-3437f.appspot.com",
   messagingSenderId: "847853767794",
@@ -28,4 +28,6 @@ else {
 
 const auth = firebase.auth();
 
-export { auth };
+const db = app.firestore();
+
+export { auth, db };

@@ -1,14 +1,13 @@
 import { Dimensions, StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { auth } from '../Firebase'
-import { AddIcon, Box, Button, ButtonIcon, ButtonSpinner, ButtonText, Center, GluestackUIProvider, Text, Textarea, TextareaInput, ScrollView} from '@gluestack-ui/themed'
+import { auth, db } from '../Firebase'
+import { Box, Button, ButtonIcon, ButtonSpinner, ButtonText, Center, GluestackUIProvider, Text, Textarea, TextareaInput, ScrollView} from '@gluestack-ui/themed'
 import { config } from '../config/gluestack-ui.config'
 import { useNavigation } from '@react-navigation/core'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
 import { faRocketchat } from '@fortawesome/free-brands-svg-icons'
 import { Alert } from 'react-native'
-import { TextInput } from 'react-native'
 import { LogBox } from 'react-native'
 
 LogBox.ignoreAllLogs()
@@ -25,6 +24,16 @@ export default function ChatScreen() {
         "Terima kasih sudah mengirim pesan.",
         [
           { text: "OK", onPress: () => {
+
+            // send data to firebase
+            console.log(nama)
+            console.log(note)
+
+            db.collection('data-pengguna').doc(auth.currentUser?.email).collection('chat-data').add({
+              nama: nama,
+              note: note
+            })
+
             setNama('')
             setNote('')
 
@@ -35,8 +44,9 @@ export default function ChatScreen() {
 
   const [nama, setNama] = useState("");
   const [note, setNote] = useState("");
-  // var nama = ''
-  // var note = ''
+  
+  
+
   return (
     <GluestackUIProvider config={config}>
       <ScrollView>
@@ -44,7 +54,7 @@ export default function ChatScreen() {
         <Box flexDirection='row' display='flex'>  
           <FontAwesomeIcon icon={faRocketchat} size={40} color='black'/>
           <Text bold={false} size='2xl' color='black' marginTop={3} marginLeft={10}>
-            WashMate Chat
+            WashWell Chat
           </Text>
         </Box>
       </Box>
